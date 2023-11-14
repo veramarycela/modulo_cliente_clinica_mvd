@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <template id="factura_clinica_template">
+            <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <style>
+                    .table 
+                    {
+                        font-size: 10px; /* Tamaño de letra más pequeño */
+                        line-height: 1; /* Interlineado más pequeño */
+                    }
+                    /* custom_styles.css */
+                    .paragraph-style 
+                    {
+                        line-height: 1.5; /* Establece el interlineado a 1.5 veces el tamaño del texto */
+                        font-size: 14px; /* Tamaño de fuente */
+                        color: #333; /* Color del texto */
+                    /* Otros estilos de párrafo si es necesario */
+                    }                  
+                </style>
+                <div class="page">
+                    <h2>Factura</h2>
+                
+                    <p>CLIENTE</p>
+                     <p class="paragraph-style"><span t-field="o.partner_id.name"/>
+                     Direccion: <span t-field="o.partner_id.city"/>
+                     Telefono: <span t-field="o.partner_id.phone_sanitized"/>
+                     Rif: <span t-field="o.partner_id.name"/></p>
+                     <p>PACIENTE</p>
+                     <p class="paragraph-style"><span t-field="o.x_id_paciente_clinica.name"/>
+                     Direccion: <span t-field="o.x_id_paciente_clinica.direccion"/>
+                     Telefono: <span t-field="o.x_id_paciente_clinica.phone"/>
+                     Cedula: <span t-field="o.x_id_paciente_clinica.identification"/></p>
+                     
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio Unitario</th>
+                                <th>Precio $</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th>Subtotal $</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.invoice_line_ids" t-as="line">
+                                <tr>
+                                    <td><span t-field="line.product_id.name"/></td>
+                                    <td><span t-field="line.price_unit"/></td>
+                                    <td><span t-field="line.x_clinica_precio_dolares"/></td>
+                                    <td><span t-field="line.quantity"/></td>
+                                    <td><span t-field="line.price_subtotal"/></td>
+                                    <td><span t-field="line.x_clinica_subtotal_dolares"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>                                
+                                <p>Total a Pagar Bs F.: <span t-field="o.amount_total"/></p>
+                            </td>                            
+                            <td>
+                                <p>Total a Pagar $: <span t-field="o.x_clinica_total_dolares"/></p>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td>
+                                <p>Tasa de Cambio USD: <span t-field="o.x_clinica_tasa_dolar"/></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+            </t>
+            </t>
+        </template>
+    </data>
+</odoo>

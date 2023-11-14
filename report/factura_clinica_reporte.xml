@@ -1,0 +1,12 @@
+<odoo>
+	<data>
+		<record id="factura_clinica_reporte" model="ir.actions.report">
+			<field name="name">Factura Clinica</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">modulo_cliente_clinica.factura_clinica_template</field>
+			<field name="report_file">modulo_cliente_clinica.factura_clinica_template</field>
+		</record>		
+     
+	</data>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_tree_cliente">
+            <field name="name">view.tree.cliente</field>
+            <field name="model">clinica.cliente</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="identification"></field>
+                    <field name="name"></field>                    
+                    <field name="phone"></field> 
+                    <field name="direccion"></field> 
+                    <field name="gender"></field> 
+                    <field name="aseguradora"></field>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_form_cliente">
+            <field name="name">view.form.todo</field>
+            <field name="model">clinica.cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="identification" string="Cedula" size="15"></field>
+                            <field name="name" string="Nombre y Apellido" size="50"></field>                            
+                            <field name="phone" string="Telefono" size="20"></field> 
+                            <field name="direccion" string="Direccion" size="150"></field> 
+                            <field name="gender" string="Genero"></field>       
+                            <field name="aseguradora" string="Compañia Aseguradora"></field>       
+                        </group>
+                    </sheet>    
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_cliente" >
+            <field name="name">Lista de Pacientes</field>
+            <field name="res_model">clinica.cliente</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Pacientes" id="menu_cliente" parent="" action="modulo_cliente_clinica.action_view_cliente"/>
+    </data>
+</odoo>

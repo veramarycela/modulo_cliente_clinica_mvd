@@ -1,0 +1,28 @@
+<odoo>
+	<data>
+		<record id="views_clinica_paciente_integrado" model="ir.ui.view">
+			<field name="name">clinica.cliente.paciente.view</field>
+    		<field name="model">account.move</field>
+    		<field name="inherit_id" ref="account.view_move_form"></field>    		
+    		<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">				
+					<field name="direccion_ci_paciente" invisible="1"/>
+					<field name="x_id_paciente_clinica" string="Paciente"/>
+					<field name="direccion_ci_paciente" string="" attrs="{'invisible': [('x_id_paciente_clinica', '=', False)], 'string': ' '}"/>              	                	
+				</xpath>
+				<xpath expr="//notebook//page//field//field[@name='price_unit'][last()]"  position="after">				
+					<field name="x_clinica_precio_dolares" string="$"/>
+				</xpath>
+				<xpath expr="//notebook//page//field//field[@name='price_subtotal'][last()]"  position="after">				
+					<field name="x_clinica_subtotal_dolares" string="$"/>
+				</xpath>
+				<xpath expr="//field[@name='tax_totals_json']"  position="after">				
+					<field name="x_clinica_total_dolares" string="Total $"/>
+				</xpath>
+					<xpath expr="//field[@name='narration']"  position="after">				
+					<field name="x_clinica_tasa_dolar" string="Tasa de Cambio USD:"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>
